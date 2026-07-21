@@ -80,7 +80,7 @@ export class UserService {
       {
         expiresIn: '1h',
         jwtid: uuid,
-        secret: process.env.JWT_REFRESH_TOKEN!,
+        secret: process.env.JWT_TOKEN!,
       },
     );
     const refreshToken = this.jwtService.sign(

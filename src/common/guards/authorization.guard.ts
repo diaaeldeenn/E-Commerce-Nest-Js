@@ -4,6 +4,7 @@ import {
   ExecutionContext,
   UnauthorizedException,
   BadRequestException,
+  HttpException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { RoleEnum } from '../enum/user.enum';
@@ -36,6 +37,9 @@ export class AuthorizationGuard implements CanActivate {
       }
       return true;
     } catch (error: any) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       throw new BadRequestException(error.message);
     }
   }
