@@ -22,6 +22,7 @@ import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
 import { RoleEnum } from 'src/common/enum/user.enum';
 import { CreateProductDto, UpdateProductDto } from './product.dto';
 import { ProductService } from './product.service';
+import { Types } from 'mongoose';
 
 @Controller('product')
 export class ProductController {
@@ -89,5 +90,11 @@ export class ProductController {
   @SetMetadata('Roles_Enum', [RoleEnum.admin])
   deleteProduct(@Param() params: any, @Req() req: any) {
     return this.productService.deleteProduct(params, req.user);
+  }
+
+  @Post('/wishList/:id')
+  @UseGuards(AuthenticationGuard)
+  addToWishlist(@Param('id') id: Types.ObjectId, @Req() req: any) {
+    return this.productService.addToWishlist(id, req.user);
   }
 }

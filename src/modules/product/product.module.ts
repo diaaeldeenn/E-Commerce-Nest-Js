@@ -23,6 +23,7 @@ import { ProductService } from './product.service';
     CategoryRepository,
     ProductRepository,
     ProductService,
+    UserRepository
   ],
 })
 export class ProductModule {}

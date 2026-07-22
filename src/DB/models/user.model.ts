@@ -1,4 +1,4 @@
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 import { GenderEnum, RoleEnum } from '../../common/enum/user.enum.js';
 import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
@@ -42,7 +42,12 @@ export class User {
   role: RoleEnum;
   @Prop({ type: String })
   profilePic?: string;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Product' }] })
+  wishList: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
-export const UserModel = MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
+export const UserModel = MongooseModule.forFeature([
+  { name: User.name, schema: UserSchema },
+]);

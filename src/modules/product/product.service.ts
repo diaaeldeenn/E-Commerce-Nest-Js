@@ -11,11 +11,13 @@ import { CreateProductDto, UpdateProductDto } from './product.dto';
 import BrandRepository from 'src/DB/repository/brand.repository';
 import CategoryRepository from 'src/DB/repository/category.repository';
 import { Types } from 'mongoose';
+import UserRepository from 'src/DB/repository/user.repository';
 
 @Injectable()
 export class ProductService {
   constructor(
     private readonly productModel: ProductRepository,
+    private readonly userModel: UserRepository,
     private readonly s3Service: S3Service,
     private readonly brandModel: BrandRepository,
     private readonly categoryModel: CategoryRepository,
@@ -287,5 +289,39 @@ export class ProductService {
     return {
       message: 'Product Deleted Successfully',
     };
+  }
+  async addToWishlist(id: Types.ObjectId, user: any) {
+    const product = await this.productModel.findById(id);
+    if (!product || product.deletedAt) {
+      throw new NotFoundException('Product Not Found');
+    }
+    let isExist: boolean = false;
+    const productExist = await this.productModel.findOneAndUpdate({
+      filter: {
+        _id: user._id,
+        wishList: { $in: [id] },
+      },
+      update: {
+        $pull: {
+          wishList: id,
+        },
+      },
+    });
+    if (!productExist) {
+      await this.productModel.findOneAndUpdate({
+        filter: {
+          _id: user._id,
+        },
+        update: {
+          $addToSet: {
+            wishList: id,
+          },
+        },
+      });
+      isExist = true;
+    }
+    return isExist === true
+      ? { message: 'added to wishList' }
+      : { message: 'remove from wishList' };
   }
 }

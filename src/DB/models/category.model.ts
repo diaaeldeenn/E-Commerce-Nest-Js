@@ -17,7 +17,7 @@ export class Category {
   @Prop({ type: String })
   slug: string;
 
-  @Prop([{ type: Types.ObjectId, ref: 'Brand' }])
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Brand' }] })
   brands: Types.ObjectId[];
 
   @Prop({ type: String, required: true })
