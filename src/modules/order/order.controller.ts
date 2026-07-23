@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
   SetMetadata,
   UseGuards,
@@ -14,7 +15,7 @@ import { OrderService } from './order.service';
 import { AuthenticationGuard } from 'src/common/guards/authentication.guard';
 import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
 import { RoleEnum } from 'src/common/enum/user.enum';
-import { CreateCashOrderDto } from './order.dto';
+import { CreateCashOrderDto, PaginationDto } from './order.dto';
 import { Types } from 'mongoose';
 import { SkipThrottle } from '@nestjs/throttler';
 
@@ -61,8 +62,8 @@ export class OrderController {
   @Get()
   @UseGuards(AuthenticationGuard, AuthorizationGuard)
   @SetMetadata('Roles_Enum', [RoleEnum.admin])
-  getAllOrders() {
-    return this.orderService.getAllOrders();
+  getAllOrders(@Query() query: PaginationDto) {
+    return this.orderService.getAllOrders(query);
   }
 
   @Get(':id')

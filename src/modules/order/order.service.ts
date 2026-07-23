@@ -9,7 +9,7 @@ import CouponRepository from 'src/DB/repository/coupon.repository';
 import OrderRepository from 'src/DB/repository/order.repository';
 import ProductRepository from 'src/DB/repository/product.repository';
 import { CouponService } from '../coupon/coupon.service';
-import { CreateCashOrderDto } from './order.dto';
+import { CreateCashOrderDto, PaginationDto } from './order.dto';
 import {
   OrderStatus,
   PaymentMethod,
@@ -328,23 +328,25 @@ export class OrderService {
     });
   }
 
-  async getAllOrders() {
-    return await this.orderModel.find({
-      options: {
-        sort: {
-          createdAt: -1,
-        },
-        populate: [
-          {
-            path: 'userId',
-            select: 'userName email phone',
-          },
-          {
-            path: 'coupon',
-            select: 'code amount',
-          },
-        ],
+  async getAllOrders(query: PaginationDto) {
+    const { page, limit } = query;
+
+    return await this.orderModel.pagination({
+      page,
+      limit,
+      sort: {
+        createdAt: -1,
       },
+      populate: [
+        {
+          path: 'userId',
+          select: 'userName email phone',
+        },
+        {
+          path: 'coupon',
+          select: 'code amount',
+        },
+      ],
     });
   }
 

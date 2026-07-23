@@ -1,10 +1,12 @@
-import { Transform } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import {
+  IsInt,
   IsMongoId,
   IsNotEmpty,
   IsOptional,
   IsPhoneNumber,
   IsString,
+  Min,
 } from 'class-validator';
 
 export class CreateCashOrderDto {
@@ -23,4 +25,18 @@ export class CreateCashOrderDto {
   @IsOptional()
   @IsString()
   couponCode?: string;
+}
+
+export class PaginationDto {
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  page?: number = 1;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  limit?: number = 10;
 }

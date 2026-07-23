@@ -18,13 +18,26 @@ import { APP_GUARD } from '@nestjs/core';
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_LOCAL!, {
-      onConnectionCreate: (connection: Connection) => {
-        connection.on('connected', () => console.log('Connected To DB'));
-        connection.on('disconnected', () => console.log('Disconnected To DB'));
-        return connection;
+    MongooseModule.forRoot(
+      process.env.NODE_ENV === 'production'
+        ? process.env.MONGO_URI!
+        : process.env.MONGO_LOCAL!,
+      {
+        onConnectionCreate: (connection: Connection) => {
+          connection.on('connected', () =>
+            console.log(
+              `Connected To ${
+                process.env.NODE_ENV === 'production' ? 'Atlas' : 'Local'
+              } DB`,
+            ),
+          );
+          connection.on('disconnected', () =>
+            console.log('Disconnected To DB'),
+          );
+          return connection;
+        },
       },
-    }),
+    ),
     ThrottlerModule.forRoot([
       {
         ttl: 60000,

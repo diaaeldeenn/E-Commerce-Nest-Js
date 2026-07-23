@@ -292,11 +292,12 @@ export class ProductService {
   }
   async addToWishlist(id: Types.ObjectId, user: any) {
     const product = await this.productModel.findById(id);
+
     if (!product || product.deletedAt) {
       throw new NotFoundException('Product Not Found');
     }
-    let isExist: boolean = false;
-    const productExist = await this.productModel.findOneAndUpdate({
+
+    const removed = await this.userModel.findOneAndUpdate({
       filter: {
         _id: user._id,
         wishList: { $in: [id] },
@@ -307,21 +308,26 @@ export class ProductService {
         },
       },
     });
-    if (!productExist) {
-      await this.productModel.findOneAndUpdate({
-        filter: {
-          _id: user._id,
-        },
-        update: {
-          $addToSet: {
-            wishList: id,
-          },
-        },
-      });
-      isExist = true;
+
+    if (removed) {
+      return {
+        message: 'Removed from wishlist',
+      };
     }
-    return isExist === true
-      ? { message: 'added to wishList' }
-      : { message: 'remove from wishList' };
+
+    await this.userModel.findOneAndUpdate({
+      filter: {
+        _id: user._id,
+      },
+      update: {
+        $addToSet: {
+          wishList: id,
+        },
+      },
+    });
+
+    return {
+      message: 'Added to wishlist',
+    };
   }
 }
