@@ -4,9 +4,9 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { S3Service } from 'src/common/service/s3.service';
-import BrandRepository from 'src/DB/repository/brand.repository';
-import CategoryRepository from 'src/DB/repository/category.repository';
+import { S3Service } from '../../common/service/s3.service';
+import BrandRepository from '../../DB/repository/brand.repository';
+import CategoryRepository from '../../DB/repository/category.repository';
 import { CreateCategoryDto, UpdateCategoryDto } from './category.dto';
 import { Types } from 'mongoose';
 
@@ -18,7 +18,6 @@ export class CategoryService {
     private readonly s3Service: S3Service,
   ) {}
 
-  
   async createCategory(
     body: CreateCategoryDto,
     file: Express.Multer.File,
@@ -78,7 +77,6 @@ export class CategoryService {
       throw new BadRequestException(error.message || 'Error creating category');
     }
   }
-
 
   async updateCategory(body: UpdateCategoryDto, id: string, user: any) {
     const { name, brands } = body;

@@ -5,8 +5,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Types } from 'mongoose';
-import CouponRepository from 'src/DB/repository/coupon.repository';
-import CartRepository from 'src/DB/repository/cart.repository';
+import CouponRepository from '../../DB/repository/coupon.repository';
+import CartRepository from '../../DB/repository/cart.repository';
 import { CreateCouponDto, UpdateCouponDto, ApplyCouponDto } from './coupon.dto';
 
 @Injectable()

@@ -15,11 +15,11 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import multerCloud from 'src/common/middleware/multer.cloud';
-import { Store_Enum } from 'src/common/enum/multer.enum';
-import { AuthenticationGuard } from 'src/common/guards/authentication.guard';
-import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
-import { RoleEnum } from 'src/common/enum/user.enum';
+import multerCloud from '../../common/middleware/multer.cloud';
+import { Store_Enum } from '../../common/enum/multer.enum';
+import { AuthenticationGuard } from '../../common/guards/authentication.guard';
+import { AuthorizationGuard } from '../../common/guards/authorization.guard';
+import { RoleEnum } from '../../common/enum/user.enum';
 import { CreateProductDto, UpdateProductDto } from './product.dto';
 import { ProductService } from './product.service';
 import { Types } from 'mongoose';

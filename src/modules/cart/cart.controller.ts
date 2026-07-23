@@ -12,9 +12,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CartService } from './cart.service';
-import { AuthenticationGuard } from 'src/common/guards/authentication.guard';
-import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
-import { RoleEnum } from 'src/common/enum/user.enum';
+import { AuthenticationGuard } from '../../common/guards/authentication.guard';
+import { AuthorizationGuard } from '../../common/guards/authorization.guard';
+import { RoleEnum } from '../../common/enum/user.enum';
 import { AddToCartDto, UpdateCartQuantityDto } from './cart.dto';
 
 @Controller('cart')

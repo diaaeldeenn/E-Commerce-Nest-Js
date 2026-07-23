@@ -20,7 +20,7 @@ import {
   ValidatorConstraintInterface,
   ValidationArguments,
 } from 'class-validator';
-import { GenderEnum } from 'src/common/enum/user.enum';
+import { GenderEnum } from '../../common/enum/user.enum';
 
 @ValidatorConstraint({ name: 'matchValue', async: false })
 export class matchValue implements ValidatorConstraintInterface {

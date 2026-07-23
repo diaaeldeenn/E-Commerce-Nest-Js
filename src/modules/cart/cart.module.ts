@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import UserRepository from 'src/DB/repository/user.repository';
-import { UserModel } from 'src/DB/models/user.model';
+import UserRepository from '../../DB/repository/user.repository';
+import { UserModel } from '../../DB/models/user.model';
 import { CartController } from './cart.controller';
-import { CartModel } from 'src/DB/models/cart.model';
+import { CartModel } from '../../DB/models/cart.model';
 import { CartService } from './cart.service';
-import CartRepository from 'src/DB/repository/cart.repository';
-import ProductRepository from 'src/DB/repository/product.repository';
-import { ProductModel } from 'src/DB/models/product.model';
+import CartRepository from '../../DB/repository/cart.repository';
+import ProductRepository from '../../DB/repository/product.repository';
+import { ProductModel } from '../../DB/models/product.model';
 
 @Module({
-  imports: [CartModel, UserModel,ProductModel],
+  imports: [CartModel, UserModel, ProductModel],
   controllers: [CartController],
   providers: [
     JwtService,

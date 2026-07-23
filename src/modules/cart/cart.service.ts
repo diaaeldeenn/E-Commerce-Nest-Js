@@ -4,10 +4,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Types } from 'mongoose';
-import CartRepository from 'src/DB/repository/cart.repository';
-import ProductRepository from 'src/DB/repository/product.repository';
+import CartRepository from '../../DB/repository/cart.repository';
+import ProductRepository from '../../DB/repository/product.repository';
 import { AddToCartDto, UpdateCartQuantityDto } from './cart.dto';
-import { CartProduct } from 'src/DB/models/cart.model';
+import { CartProduct } from '../../DB/models/cart.model';
 
 @Injectable()
 export class CartService {

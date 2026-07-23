@@ -5,13 +5,13 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { S3Service } from 'src/common/service/s3.service';
-import ProductRepository from 'src/DB/repository/product.repository';
+import { S3Service } from '../../common/service/s3.service';
+import ProductRepository from '../../DB/repository/product.repository';
 import { CreateProductDto, UpdateProductDto } from './product.dto';
-import BrandRepository from 'src/DB/repository/brand.repository';
-import CategoryRepository from 'src/DB/repository/category.repository';
+import BrandRepository from '../../DB/repository/brand.repository';
+import CategoryRepository from '../../DB/repository/category.repository';
 import { Types } from 'mongoose';
-import UserRepository from 'src/DB/repository/user.repository';
+import UserRepository from '../../DB/repository/user.repository';
 
 @Injectable()
 export class ProductService {

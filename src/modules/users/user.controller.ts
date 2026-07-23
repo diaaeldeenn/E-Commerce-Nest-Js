@@ -21,12 +21,12 @@ import {
   UpdateProfileDto,
 } from './user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import multerCloud from 'src/common/middleware/multer.cloud';
-import { Store_Enum } from 'src/common/enum/multer.enum';
-import { AuthenticationGuard } from 'src/common/guards/authentication.guard';
-import { Roles } from 'src/common/decorator/auth.decorator';
-import { RoleEnum } from 'src/common/enum/user.enum';
-import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
+import multerCloud from '../../common/middleware/multer.cloud';
+import { Store_Enum } from '../../common/enum/multer.enum';
+import { AuthenticationGuard } from '../../common/guards/authentication.guard';
+import { Roles } from '../../common/decorator/auth.decorator';
+import { RoleEnum } from '../../common/enum/user.enum';
+import { AuthorizationGuard } from '../../common/guards/authorization.guard';
 
 @Controller('users')
 export class UserController {

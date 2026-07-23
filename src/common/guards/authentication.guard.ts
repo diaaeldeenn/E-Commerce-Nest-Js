@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Types } from 'mongoose';
-import UserRepository from 'src/DB/repository/user.repository';
+import UserRepository from '../../DB/repository/user.repository';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
@@ -53,7 +53,6 @@ export class AuthenticationGuard implements CanActivate {
       req.user = user;
       req.decoded = decoded;
     } catch (error: any) {
-
       if (
         error instanceof UnauthorizedException ||
         error instanceof NotFoundException

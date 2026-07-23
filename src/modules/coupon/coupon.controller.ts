@@ -11,9 +11,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CouponService } from './coupon.service';
-import { AuthenticationGuard } from 'src/common/guards/authentication.guard';
-import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
-import { RoleEnum } from 'src/common/enum/user.enum';
+import { AuthenticationGuard } from '../../common/guards/authentication.guard';
+import { AuthorizationGuard } from '../../common/guards/authorization.guard';
+import { RoleEnum } from '../../common/enum/user.enum';
 import { ApplyCouponDto, CreateCouponDto, UpdateCouponDto } from './coupon.dto';
 
 @Controller('coupon')

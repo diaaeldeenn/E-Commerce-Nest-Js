@@ -12,9 +12,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
-import { AuthenticationGuard } from 'src/common/guards/authentication.guard';
-import { AuthorizationGuard } from 'src/common/guards/authorization.guard';
-import { RoleEnum } from 'src/common/enum/user.enum';
+import { AuthenticationGuard } from '../../common/guards/authentication.guard';
+import { AuthorizationGuard } from '../../common/guards/authorization.guard';
+import { RoleEnum } from '../../common/enum/user.enum';
 import { CreateCashOrderDto, PaginationDto } from './order.dto';
 import { Types } from 'mongoose';
 import { SkipThrottle } from '@nestjs/throttler';

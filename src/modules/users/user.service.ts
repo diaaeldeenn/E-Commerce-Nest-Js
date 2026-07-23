@@ -5,7 +5,7 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import UserRepository from 'src/DB/repository/user.repository';
+import UserRepository from '../../DB/repository/user.repository';
 import {
   confirmPasswordDto,
   forgetPasswordDto,
@@ -15,16 +15,16 @@ import {
   UpdatePasswordDto,
   UpdateProfileDto,
 } from './user.dto';
-import { CompareHash, Hash } from 'src/common/utils/security/hash.security';
-import { decrypt, encrypt } from 'src/common/utils/security/encrypt.security';
-import { generateOtp, sendEmail } from 'src/common/utils/email/send.email';
-import { email_Template } from 'src/common/utils/email/email.template';
-import RedisService from 'src/common/service/redis.service';
+import { CompareHash, Hash } from '../../common/utils/security/hash.security';
+import { decrypt, encrypt } from '../../common/utils/security/encrypt.security';
+import { generateOtp, sendEmail } from '../../common/utils/email/send.email';
+import { email_Template } from '../../common/utils/email/email.template';
+import RedisService from '../../common/service/redis.service';
 import { randomUUID } from 'crypto';
 import { JwtService } from '@nestjs/jwt';
-import { sendEmailOtp } from 'src/common/utils/email/email.otp';
+import { sendEmailOtp } from '../../common/utils/email/email.otp';
 import { Types } from 'mongoose';
-import { S3Service } from 'src/common/service/s3.service';
+import { S3Service } from '../../common/service/s3.service';
 
 @Injectable()
 export class UserService {

@@ -5,8 +5,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { S3Service } from 'src/common/service/s3.service';
-import BrandRepository from 'src/DB/repository/brand.repository';
+import { S3Service } from '../../common/service/s3.service';
+import BrandRepository from '../../DB/repository/brand.repository';
 import { CreateBrandDto, UpdateBrandDto } from './brand.dto';
 import { Types } from 'mongoose';
 

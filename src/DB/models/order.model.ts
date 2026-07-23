@@ -4,7 +4,7 @@ import {
   OrderStatus,
   PaymentMethod,
   PaymentStatus,
-} from 'src/common/enum/order.enum';
+} from '../../common/enum/order.enum';
 
 export type OrderDocument = HydratedDocument<Order>;
 
